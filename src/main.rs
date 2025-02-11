@@ -10,7 +10,7 @@ fn render(canvas: &mut WindowCanvas, color: Color, texture: &Texture) -> Result<
     canvas.set_draw_color(color);
     canvas.clear();
 
-    canvas.copy(texture, None, None);
+    _ = canvas.copy(texture, None, None);
 
     canvas.present();
 
@@ -35,11 +35,7 @@ fn main() -> Result<(), String> {
         .expect("could not make a canvas");
 
     let texture_creator = canvas.texture_creator();
-    let texture = texture_creator.load_texture("assets/bardo.png");
-
-    canvas.set_draw_color(Color::RGB(0, 255, 255));
-    canvas.clear();
-    canvas.present();
+    let texture = texture_creator.load_texture("assets/bardo.png")?;
 
     let mut event_pump = sdl_context.event_pump()?;
     let mut i = 0;
@@ -60,7 +56,7 @@ fn main() -> Result<(), String> {
         i = (i + 1) % 255;
 
         // Render
-        render(&mut canvas, Color::RGB(i, 64, 255 - i));
+        _ = render(&mut canvas, Color::RGB(i, 64, 255 - i), &texture);
 
         // Time management
         ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
