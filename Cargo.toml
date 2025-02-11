@@ -1,0 +1,12 @@
+[package]
+name = "rust_sdl_game"
+version = "0.1.0"
+authors = ["Ethan Rucar <ethan.rucar@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+
+[dependencies.sdl2]
+version = "*"
+default-features = false
+features = ["image"]
